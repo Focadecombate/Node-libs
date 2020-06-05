@@ -1,12 +1,4 @@
-/* 
-    Instrução para poder ser arg pro mapa 
-*/
-interface Mappable {
-  location: {
-    lat: number;
-    lng: number;
-  };
-}
+import { Mappable } from "./Mappable";
 
 export class CustomMap {
   private googleMap: google.maps.Map;
@@ -22,10 +14,16 @@ export class CustomMap {
   }
   addMarker(mappable: Mappable): void {
     const { location } = mappable;
-    new google.maps.Marker({
+    const marker = new google.maps.Marker({
       map: this.googleMap,
       position: location,
-      title: "User Position",
+      title: mappable.name,
+    });
+    marker.addListener("click", () => {
+      const infoWindow = new google.maps.InfoWindow({
+        content: mappable.markerContent(),
+      });
+      infoWindow.open(this.googleMap, marker);
     });
   }
 }
