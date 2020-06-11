@@ -1,0 +1,18 @@
+{
+  "name": "csv",
+  "version": "1.0.0",
+  "description": "Learning To work with Csv files",
+  "main": "build/index.js",
+  "author": "Gustavo Santos",
+  "license": "MIT",
+  "scripts": {
+    "start:build": "tsc -w",
+    "start:run": "nodemon -L build/index.js",
+    "start": "concurrently npm:start:*"
+  },
+  "devDependencies": {
+    "@types/node": "^14.0.13",
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.4"
+  }
+}
